@@ -7,15 +7,23 @@ describe ('Thermostat', function() {
         thermostat = new Thermostat();
     });
 
-    describe ('temperature default 20 degrees', function() {
-      it ('starting temp is 20 degrees', function() {
-        expect(thermostat.getCurrentTemperature()).toEqual(20);
-      });
+    it ('starting temperature is 20 degrees', function() {
+      expect(thermostat.getCurrentTemperature()).toEqual(20);
     });
+    it ('increases in temperature with up', function() {
+      thermostat.up();
+      expect(thermostat.getCurrentTemperature()).toEqual(21);
+    });
+    it ('decreases in temperature with down', function() {
+      thermostat.down();
+      expect(thermostat.getCurrentTemperature()).toEqual(19);
+    });
+    it ('thermostat has a minimum temperature of 10 degrees', function() {
+      for (var i = 0; i < 11; i++) {
+        thermostat.down();
+      }
+      expect(thermostat.getCurrentTemperature()).toEqual(10);
+    });
+  });
 
-  /* describe ('temperature increase', function() {
-    it ('increases the temperature', function() {
-      expect(thermostat.up).toEqual(25);
-    });
-  }); */
-});
+  
